@@ -10,15 +10,15 @@ from datetime import datetime
 
 def send_email(receiver, url, time):
     
-    # 设置发件人和收件人信息
-    sender_email = "470014599@qq.com"
-    password = "kqaphslgcwgzbjac"  # QQ 邮箱授权码
+    # 设置发件人信息
+    sender_email = "aaa@aaa.com" # 发件邮箱
+    password = "xxxxxx"  # 发件邮箱密码(授权码)
 
     # 创建邮件对象
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = receiver
-    message["Subject"] = "网站上线"
+    message["Subject"] = "网站上线" # 邮件主题
 
     # 邮件正文
     body = f"网站已经上线 {url}，当前时间: {time}"
@@ -26,7 +26,7 @@ def send_email(receiver, url, time):
 
     # 连接到 SMTP 服务器并发送邮件
     try:
-        # 连接到 QQ 邮箱的 SMTP 服务器
+        # 连接到 QQ 邮箱的 SMTP 服务器，根据不同邮箱具体设置
         server = smtplib.SMTP("smtp.qq.com", 587)
         server.starttls()  # 启用 TLS 加密
         server.login(sender_email, password)  # 登录 SMTP 服务器
