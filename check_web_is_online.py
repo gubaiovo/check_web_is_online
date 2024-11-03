@@ -47,9 +47,9 @@ def checkweb(receiver, url):
         response = requests.get(url)
         if response.status_code == 200:
             print(f"网站正常 {url}，当前时间: {current_time}")
-            send_email(receiver, url, current_time，response.status_code)
+            send_email(receiver, url, current_time, response.status_code)
         else:
-            print(f"网站异常{response.status_code}, 但是网站在线 {url}，当前时间: {current_time}")
+            print(f"网站异常{response.status_code}, 但是网站在线 {url}, 当前时间: {current_time}")
             send_email(receiver, url, current_time，response.status_code)
     except Exception as e:
         print(f"网站连接失败 {e}，当前时间: {current_time}")
