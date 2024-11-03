@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 
-def send_email(receiver, url, time):
+def send_email(receiver, url, current_time, status_code):
     
     # 设置发件人信息
     sender_email = "aaa@aaa.com" # 发件邮箱
@@ -21,7 +21,7 @@ def send_email(receiver, url, time):
     message["Subject"] = "网站上线" # 邮件主题
 
     # 邮件正文
-    body = f"网站已经上线 {url}，当前时间: {time}"
+    body = f"网站 {url} 状态为 {status_code}，当前时间: {current_time}"
     message.attach(MIMEText(body, "plain"))
 
     # 连接到 SMTP 服务器并发送邮件
@@ -47,12 +47,12 @@ def checkweb(receiver, url):
         response = requests.get(url)
         if response.status_code == 200:
             print(f"网站正常 {url}，当前时间: {current_time}")
-            send_email(receiver, url, current_time)
+            send_email(receiver, url, current_time，response.status_code)
         else:
             print(f"网站异常{response.status_code}, 但是网站在线 {url}，当前时间: {current_time}")
-            send_email(receiver, url, current_time)
+            send_email(receiver, url, current_time，response.status_code)
     except Exception as e:
-        print(f"网站异常! {e}，当前时间: {current_time}")
+        print(f"网站连接失败 {e}，当前时间: {current_time}")
 
 def is_valid_email(email):
     pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
