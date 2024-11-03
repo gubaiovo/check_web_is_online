@@ -1,2 +1,2 @@
 # check_web_is_online
-使用get方法检查web在线，并通过邮箱提醒
+使用get方法循环检查web是否在线，并通过邮箱提醒
